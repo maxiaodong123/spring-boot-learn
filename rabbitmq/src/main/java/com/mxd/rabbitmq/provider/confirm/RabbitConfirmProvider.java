@@ -29,7 +29,7 @@ public class RabbitConfirmProvider {
      * @param exchange   交换机
      * @param routingKey 队列
      * @param msg        消息体
-     * @author xiaofu
+     * @author mxd
      * @description 发送消息
      * @date 2020/6/29 16:22
      */

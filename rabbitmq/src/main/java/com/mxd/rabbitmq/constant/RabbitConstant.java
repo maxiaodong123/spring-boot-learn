@@ -56,4 +56,39 @@ public interface RabbitConstant {
      */
     String RPC_QUEUE_NAME = "rpc_queue";
 
+
+    /**
+     * retry 消息重试
+     */
+    String RETRY_EXCHANGE_NAME = "retry_exchange";
+    String RETRY_QUEUE_NAME = "retry_queue";
+
+    /**
+     * 异常队列
+     */
+    String ERROR_EXCHANGE_NAME = "error_exchange";
+    String ERROR_QUEUE_NAME = "error_queue";
+    String ERROR_ROUTING_KEY = "error_routing_key";
+
+    /**
+     * 死信队列
+     */
+    String NORMAL_EXCHANGE_NAME = "normal_exchange";
+    String NORMAL_QUEUE_NAME = "normal_queue";
+    String NORMAL_ROUTING_KEY = "normal_routing_key";
+
+    String DLX_EXCHANGE_NAME = "dlx_exchange";
+    String DLX_QUEUE_NAME = "dlx_queue";
+    String DLX_ROUTING_KEY = "dlx_routing_key";
+
+    /**
+     * DLX，定义参数
+     */
+    String X_DEAD_LETTER_EXCHANGE="x-dead-letter-exchange";
+    String X_DEAD_LETTER_ROUTING_KEY="x-dead-letter-routing-key";
+    String X_MESSAGE_TTL="x-message-ttl";
+    String X_MAX_LENGTH="x-max-length";
+
 }
+
+

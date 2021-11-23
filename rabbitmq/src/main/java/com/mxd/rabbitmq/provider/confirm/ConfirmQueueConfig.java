@@ -1,4 +1,4 @@
-package com.mxd.rabbitmq.config;
+package com.mxd.rabbitmq.provider.confirm;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date: 2021/11/22 16:15
  */
 @Configuration
-public class QueueConfig {
+public class ConfirmQueueConfig {
 
     @Bean(name = "confirmTestQueue")
     public Queue confirmTestQueue() {

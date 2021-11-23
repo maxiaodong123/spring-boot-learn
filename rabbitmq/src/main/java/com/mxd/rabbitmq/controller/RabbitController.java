@@ -72,14 +72,43 @@ public class RabbitController {
         System.out.println("rabbit rpc response message: " + responseMsg);
     }
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @RequestMapping(value = "/confirm", method = RequestMethod.GET)
     @ResponseBody
-    public String test() {
+    public String confirm() {
 
-        for (int i = 0; i < 5; i++) {
-            rabbitConfirmProvider.sendMessage("", "confirm_test_queue",  "发送者消息");
+        for (int i = 0; i < 100; i++) {
+            System.out.println("发送第" + i + "个消息");
+            rabbitConfirmProvider.sendMessage("", "confirm_test_queue",  "发送消息");
         }
         return "success";
     }
 
+
+    @RequestMapping(value = "/confirmError", method = RequestMethod.GET)
+    @ResponseBody
+    public String confirmError() {
+
+        for (int i = 0; i < 100; i++) {
+            System.out.println("发送第" + i + "个消息");
+            rabbitConfirmProvider.sendMessage("confirm_test_queue", "confirm_test_queue",  "发送消息");
+        }
+        return "success";
+    }
+
+    @RequestMapping(value = "/retry", method = RequestMethod.GET)
+    @ResponseBody
+    public String retry() {
+        rabbitTemplate.convertAndSend(RabbitConstant.RETRY_EXCHANGE_NAME, RabbitConstant.RETRY_QUEUE_NAME, "retry hello");
+
+        return "success";
+    }
+
+    @RequestMapping(value = "/dlx", method = RequestMethod.GET)
+    @ResponseBody
+    public String dlx() {
+        rabbitTemplate.convertAndSend(RabbitConstant.NORMAL_EXCHANGE_NAME, RabbitConstant.NORMAL_ROUTING_KEY,"dlx1 hello");
+        rabbitTemplate.convertAndSend(RabbitConstant.DLX_EXCHANGE_NAME, RabbitConstant.DLX_ROUTING_KEY,"dlx2 hello");
+
+        return "success";
+    }
 }

@@ -18,10 +18,14 @@ spring:
 #    password: xiaonu123
 #    virtual-host: app
     # rabbitmq的用户名
+
+    #集群配置
     addresses: 1.14.8.190:5672,1.14.8.190:5673,1.14.8.190:5674
     username: user
     # rabbitmq的用户密码
     password: 123456
+    #超时时间
+    connection-timeout: 10000
 #    virtual-host: user
     #开启 confirm 确认机制
     #发布确认属性有三种确认类型:None,Correlated,Simple
@@ -31,18 +35,30 @@ spring:
     #其一:效果和CORRELATED值一样会触发回调方法，
     #其二:在发布消息成功后使用rabbitTemplate调用waitForConfirms或waitForConfirmsOrDie方法等待 broker节点返回发送结果，
     #根据返回结果来判定下一步的逻辑，要注意的点是waitForConfirmsOrDie方法如果返回false则会关闭channel，则接下来无法发送消息到broker。
-    publisher-confirm-type: correlated
+    publisher-confirm-type: Correlated
     #生产者发送的消息，经 Exchange 交换器路由到某个Queue队列中
     publisher-returns: true
     #当 mandatory 参数设置为true时，交换器无法根据自身的类型和路由键找到一个符合条件对队列，那么 RabbitMQ 会调用 Basic.Return 命令将消息返回给生产者。
     #当 mandatory 参数设置为 false 时，出现上述情况，则消息直接被丢弃。
     template:
       mandatory: true
+      retry:
+        max-attempts: 5
+        enabled: true
+
     listener:
       simple:
         # 设置消费端手动 ack
         acknowledge-mode: manual
+        # 设置消费端自动，死信消息队列使用
+#        acknowledge-mode: auto
+        default-requeue-rejected: false # 重试次数超过上面的设置之后是否丢弃（false不丢弃时需要写相应代码将该消息加入死信队列）
         # 是否支持重试
         retry:
           enabled: true
-
+          #最大重试次数（默认无数次）
+          max-attempts: 5
+          #重试间隔次数
+          initial-interval: 3000
+          # 间隔时间乘子，间隔时间*乘子=下一次的间隔时间，最大不能超过设置的最大间隔时间
+          multiplier: 2

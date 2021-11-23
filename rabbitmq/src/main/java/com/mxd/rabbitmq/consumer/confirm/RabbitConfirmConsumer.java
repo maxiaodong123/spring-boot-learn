@@ -20,13 +20,15 @@ import java.io.IOException;
 public class RabbitConfirmConsumer {
 
     @RabbitHandler
-    public void processHandler1(String msg, Channel channel, Message message) throws IOException {
+    public void processHandler(String msg, Channel channel, Message message) throws IOException {
 
         try {
             log.info("消费者 1 号收到：{}", msg);
 
             //TODO 具体业务
-
+            // 正常签收，mq收到此消息被正常签收后即可从队列中删除vi信息
+            // 是哟了那个channel的方法
+            // 第一个参数是deliverytag 标识哪条信息 第二个参数是是否批量签收
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 
         }  catch (Exception e) {
@@ -34,7 +36,8 @@ public class RabbitConfirmConsumer {
             if (message.getMessageProperties().getRedelivered()) {
 
                 log.error("消息已重复处理失败,拒绝再次接收...");
-
+                //拒绝一个消息。从AMQP.Basic.GetOk或AMQP.Basic.Deliver方法中提供deliveryTag，其中包含被拒绝的接收消息。
+                //Params: deliveryTag -从收到的AMQP.Basic.GetOk或AMQP.Basic.Deliver requeue -如果被拒绝的消息应该被重新队列而不是被丢弃/死信，则为true
                 channel.basicReject(message.getMessageProperties().getDeliveryTag(), false); // 拒绝消息
             } else {
 
