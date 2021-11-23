@@ -35,7 +35,7 @@ public class RabbitConfirmConsumer {
 
             if (message.getMessageProperties().getRedelivered()) {
 
-                log.error("消息已重复处理失败,拒绝再次接收...");
+                log.error("消息已重复处理失败,拒绝再次接收...11111");
                 //拒绝一个消息。从AMQP.Basic.GetOk或AMQP.Basic.Deliver方法中提供deliveryTag，其中包含被拒绝的接收消息。
                 //Params: deliveryTag -从收到的AMQP.Basic.GetOk或AMQP.Basic.Deliver requeue -如果被拒绝的消息应该被重新队列而不是被丢弃/死信，则为true
                 channel.basicReject(message.getMessageProperties().getDeliveryTag(), false); // 拒绝消息
