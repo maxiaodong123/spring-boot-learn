@@ -27,7 +27,7 @@ public class RabitmqConfirmTest {
         template.setConfirmCallback(new ConfirmCallback() {
             @Override
             public void confirm(CorrelationData correlationData, boolean b, java.lang.String s) {
-                if (b) System.out.println("消息发送成功");
+                if (b) System.out.println("消息发送成功111");
                 else System.out.println("消息发送失败");
             }
 
