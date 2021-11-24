@@ -62,3 +62,5 @@ spring:
           initial-interval: 3000
           # 间隔时间乘子，间隔时间*乘子=下一次的间隔时间，最大不能超过设置的最大间隔时间
           multiplier: 2
+        # 消费端限流，在单个请求中处理的消息个数，unack的最大数量
+        prefetch: 2
