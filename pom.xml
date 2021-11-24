@@ -16,6 +16,7 @@
         <module>rabbitmq</module>
         <module>rongyun</module>
         <module>redis</module>
+        <module>mybatisPlus</module>
     </modules>
 
     <properties>
