@@ -1,0 +1,41 @@
+#spring:
+#  redis:
+#    cluster:
+#      #设置key的生存时间，当key过期时，它会被自动删除；
+#      expire-seconds: 120
+#      #设置命令的执行时间，如果超过这个时间，则报错;
+#      command-timeout: 5000
+#      #设置redis集群的节点信息，其中namenode为域名解析，通过解析域名来获取相应的地址;
+#      nodes: 10.3.1.5:9801,10.3.1.5:9802,10.3.1.5:9803,10.3.1.5:9804,10.3.1.5:9805,10.3.1.5:9806
+
+server:
+  port: 8085
+
+spring:
+  # kafka集群配置 ,bootstrap-servers 是必须的
+  kafka:
+    # 生产者的kafka集群地址
+    bootstrap-servers: 114.117.165.214:9002,114.117.165.214:9003,114.117.165.214:9004
+    producer:
+      retries: 0
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        linger.ms: 1
+
+    consumer:
+      enable-auto-commit: false
+      auto-commit-interval: 100ms
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        session.timeout.ms: 15000
+
+topic:
+  group-id: topicGroupId
+  topic-name:
+    - topic1
+    - topic2
+    - topic3

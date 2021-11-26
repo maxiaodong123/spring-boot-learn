@@ -18,6 +18,7 @@
         <module>redis</module>
         <module>mybatisPlus</module>
         <module>redisson_cluster</module>
+        <module>kafka</module>
     </modules>
 
     <properties>
