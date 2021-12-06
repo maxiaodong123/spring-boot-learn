@@ -14,7 +14,6 @@
     <modules>
         <module>nacos</module>
         <module>rabbitmq</module>
-        <module>rongyun</module>
         <module>redis</module>
         <module>mybatisPlus</module>
         <module>redisson_cluster</module>
@@ -65,6 +64,14 @@
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
                 <version>2021.1</version>
+            </dependency>
+
+            <!--Lombok-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.20</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
