@@ -1,0 +1,12 @@
+server:
+  port: 8088
+
+#数据源配置
+spring:
+  datasource:
+    name: mybatis
+    username: root
+    password: 123456
+    url: jdbc:p6spy:mysql://192.168.3.69:3306/kjsl_pinker?serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver

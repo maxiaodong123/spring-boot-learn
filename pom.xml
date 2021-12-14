@@ -18,6 +18,8 @@
         <module>mybatisPlus</module>
         <module>redisson_cluster</module>
         <module>kafka</module>
+        <module>canal</module>
+        <module>canal</module>
     </modules>
 
     <properties>
