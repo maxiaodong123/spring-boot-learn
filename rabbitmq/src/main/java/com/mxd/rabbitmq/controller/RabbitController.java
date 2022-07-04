@@ -2,15 +2,21 @@ package com.mxd.rabbitmq.controller;
 
 import com.mxd.rabbitmq.constant.RabbitConstant;
 import com.mxd.rabbitmq.provider.confirm.RabbitConfirmProvider;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
+@Slf4j
 public class RabbitController {
 
     @Autowired
@@ -111,4 +117,22 @@ public class RabbitController {
 
         return "success";
     }
+
+    @RequestMapping(value = "/sendDelayedMsg", method = RequestMethod.GET)
+    public void sendMsg() {
+        String queueName = "test_queue_1";
+        String msg = "hello i am delay msg";
+        log.info("===============延时队列生产消息====================");
+        log.info("发送时间:{}", LocalDateTime.now());
+        rabbitTemplate.convertAndSend("test_exchange", queueName, msg, new MessagePostProcessor() {
+            @Override
+            public Message postProcessMessage(Message message) throws AmqpException {
+                message.getMessageProperties().setHeader("x-delay",3000);
+                return message;
+            }
+        });
+    }
+
+
+
 }

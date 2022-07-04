@@ -8,24 +8,24 @@ spring:
 #    username: guest  # 设置RabbitMQ用户名
 #    password: guest  # 设置RabbitMQ密码
   rabbitmq:
-#    # rabbitmq安装位置
-#    host: 192.168.3.37
-#    # rabbitmq的端口
-#    port: 5672
-#    # rabbitmq的用户名
-#    username: xiaonu
-#    # rabbitmq的用户密码
-#    password: xiaonu123
-#    virtual-host: app
+    # rabbitmq安装位置
+    host: 115.159.81.231
+    # rabbitmq的端口
+    port: 5672
     # rabbitmq的用户名
-
-    #集群配置
-    addresses: 1.14.8.190:5672,1.14.8.190:5673,1.14.8.190:5674
     username: user
     # rabbitmq的用户密码
     password: 123456
-    #超时时间
-    connection-timeout: 10000
+    virtual-host: app
+     #rabbitmq的用户名
+
+    #集群配置
+#    addresses: 1.14.8.190:5672,1.14.8.190:5673,1.14.8.190:5674
+#    username: user
+#    # rabbitmq的用户密码
+#    password: 123456
+#    #超时时间
+#    connection-timeout: 10000
 #    virtual-host: user
     #开启 confirm 确认机制
     #发布确认属性有三种确认类型:None,Correlated,Simple
