@@ -42,6 +42,12 @@
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.58</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -68,5 +74,69 @@
                 <filtering>false</filtering>
             </resource>
         </resources>
+
+<!--        <finalName>${project.artifactId}</finalName>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <fork>true</fork>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            &lt;!&ndash; 跳过单元测试 &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <skipTests>true</skipTests>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            &lt;!&ndash;使用docker-maven-plugin插件&ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>com.spotify</groupId>-->
+<!--                <artifactId>docker-maven-plugin</artifactId>-->
+<!--&lt;!&ndash;                <version>1.0.0</version>&ndash;&gt;-->
+<!--                &lt;!&ndash;将插件绑定在某个phase执行&ndash;&gt;-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>build-image</id>-->
+<!--                        &lt;!&ndash;用户只需执行mvn package ，就会自动执行mvn docker:build&ndash;&gt;-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>build</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash;指定生成的镜像名&ndash;&gt;-->
+<!--                    <imageName>mxd/${project.artifactId}</imageName>-->
+<!--                    &lt;!&ndash;指定标签&ndash;&gt;-->
+<!--                    <imageTags>-->
+<!--                        <imageTag>latest</imageTag>-->
+<!--                    </imageTags>-->
+<!--                    &lt;!&ndash;指定基础镜像jdk1.8&ndash;&gt;-->
+<!--                    <baseImage>java</baseImage>-->
+<!--                    &lt;!&ndash;镜像制作人本人信息&ndash;&gt;-->
+<!--                    <maintainer>aa52105210@163.com</maintainer>-->
+<!--                    &lt;!&ndash;切换到ROOT目录&ndash;&gt;-->
+<!--                    <workdir>/ROOT</workdir>-->
+<!--                    <cmd>["java", "-version"]</cmd>-->
+<!--                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>-->
+<!--                    &lt;!&ndash;指定远程 docker api地址&ndash;&gt;-->
+<!--                    <dockerHost>http://1.14.8.190:2375</dockerHost>-->
+<!--                    &lt;!&ndash; 这里是复制 jar 包到 docker 容器指定目录配置 &ndash;&gt;-->
+<!--                    <resources>-->
+<!--                        <resource>-->
+<!--                            <targetPath>/</targetPath>-->
+<!--                            &lt;!&ndash;jar 包所在的路径  此处配置的 即对应 target 目录&ndash;&gt;-->
+<!--                            <directory>${project.build.directory}</directory>-->
+<!--                            &lt;!&ndash;用于指定需要复制的文件 需要包含的 jar包 ，这里对应的是 Dockerfile中添加的文件名 &ndash;&gt;-->
+<!--                            <include>${project.build.finalName}.jar</include>-->
+<!--                        </resource>-->
+<!--                    </resources>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
     </build>
 </project>

@@ -15,7 +15,7 @@ spring:
   # kafka集群配置 ,bootstrap-servers 是必须的
   kafka:
     # 生产者的kafka集群地址
-    bootstrap-servers: 114.117.165.214:9002,114.117.165.214:9003,114.117.165.214:9004
+    bootstrap-servers: 127.0.0.1:9002,127.0.0.1:9003,127.0.0.1:9004
     producer:
       retries: 0
       batch-size: 16384

@@ -30,7 +30,7 @@ public class RabbitConfirmConsumer {
             // 是哟了那个channel的方法
             // 第一个参数是deliverytag 标识哪条信息 第二个参数是是否批量签收
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
-
+            log.info("msg：{} 已被消费", msg);
         }  catch (Exception e) {
 
             if (message.getMessageProperties().getRedelivered()) {

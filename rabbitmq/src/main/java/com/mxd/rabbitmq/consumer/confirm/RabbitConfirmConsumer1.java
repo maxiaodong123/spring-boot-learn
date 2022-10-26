@@ -37,19 +37,23 @@ public class RabbitConfirmConsumer1 {
 
         } catch (Exception e) {
             log.error("currentNum----------------" + currentNum);
-            if (currentNum <= 100) {
-
-//                e.printStackTrace();
-
+            if (currentNum < retryNum) {
                 // 异常拒绝签收，让mq重发此信息
                 //deliveryTag -接收到的标签AMQP.Basic.GetOk或AMQP.Basic.Deliver
                 //multiple - true拒绝所有消息，包括提供的发送标签;False表示仅拒绝提供的投递标签。
                 //Requeue -如果被拒绝的消息应该被Requeue而不是被丢弃/死信，则为true
-                log.error("拒绝一个或多个接收到的消息");
+                log.error("第{}次拒绝一个或多个接收到的消息, 消息内容为：{}", currentNum, msg);
                 channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, true);
                 // 该信息丢了，但是不需要你重发
                 // channel.basicNack(message.getMessageProperties().getDeliveryTag(),true,false);
 
+            }
+            if (currentNum == retryNum) {
+//                e.printStackTrace();
+                log.error("消息已5次处理失败,拒绝再次接收，msg :{}", msg);
+                //拒绝一个消息。从AMQP.Basic.GetOk或AMQP.Basic.Deliver方法中提供deliveryTag，其中包含被拒绝的接收消息。
+                //Params: deliveryTag -从收到的AMQP.Basic.GetOk或AMQP.Basic.Deliver requeue -如果被拒绝的消息应该被重新队列而不是被丢弃/死信，则为true
+                channel.basicReject(message.getMessageProperties().getDeliveryTag(), false); // 拒绝消息
             }
             currentNum++;
         }

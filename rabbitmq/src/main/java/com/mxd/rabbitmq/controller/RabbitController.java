@@ -2,6 +2,7 @@ package com.mxd.rabbitmq.controller;
 
 import com.mxd.rabbitmq.constant.RabbitConstant;
 import com.mxd.rabbitmq.provider.confirm.RabbitConfirmProvider;
+import com.mxd.rabbitmq.provider.dlx.OrderProduce;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.Message;
@@ -82,9 +83,9 @@ public class RabbitController {
     @ResponseBody
     public String confirm() {
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             System.out.println("发送第" + i + "个消息");
-            rabbitConfirmProvider.sendMessage("", "confirm_test_queue",  "发送消息");
+            rabbitConfirmProvider.sendMessage("", "confirm_test_queue",  "发送第" + i + "个消息");
         }
         return "success";
     }
@@ -133,6 +134,13 @@ public class RabbitController {
         });
     }
 
+    @Autowired
+    OrderProduce orderProduce;
+
+    @RequestMapping(value = "/sendDlxMsg", method = RequestMethod.GET)
+    public void sendDlxMsg() {
+        orderProduce.send(123123L);
+    }
 
 
 }

@@ -1,5 +1,5 @@
 server:
-  port: 8081  # 设置端口号
+  port: 8082  # 设置端口号
 
 spring:
 #  rabbitmq:
@@ -8,8 +8,8 @@ spring:
 #    username: guest  # 设置RabbitMQ用户名
 #    password: guest  # 设置RabbitMQ密码
   rabbitmq:
-    # rabbitmq安装位置
-    host: 115.159.81.231
+#    # rabbitmq安装位置
+    host: 127.0.0.1
     # rabbitmq的端口
     port: 5672
     # rabbitmq的用户名
@@ -17,10 +17,20 @@ spring:
     # rabbitmq的用户密码
     password: 123456
     virtual-host: app
-     #rabbitmq的用户名
+    # rabbitmq的用户名
+
+#    # rabbitmq安装位置
+#    host: 127.0.0.1
+#    # rabbitmq的端口
+#    port: 5672
+#    # rabbitmq的用户名
+#    username: root
+#    # rabbitmq的用户密码
+#    password: 123456
+#    virtual-host: dev1
 
     #集群配置
-#    addresses: 1.14.8.190:5672,1.14.8.190:5673,1.14.8.190:5674
+#    addresses: 127.0.0.1:5672,127.0.0.1:5673,127.0.0.1:5674
 #    username: user
 #    # rabbitmq的用户密码
 #    password: 123456

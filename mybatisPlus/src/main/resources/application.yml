@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     name: mybatis
-    url: jdbc:mysql://139.155.12.147:3306/mybatis?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&rewriteBatchedStatements=true&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/mybatis?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&rewriteBatchedStatements=true&useSSL=false
     username: root
     password: Mxd!@#123
     type: com.alibaba.druid.pool.DruidDataSource
