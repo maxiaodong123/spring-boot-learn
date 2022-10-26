@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: mongodb
+  data:
+    mongodb:
+      uri: mongodb://root:jyty@192.168.0.90:27017/admin?authSource=admin&authMechanism=SCRAM-SHA-1

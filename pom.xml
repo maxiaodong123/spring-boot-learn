@@ -19,6 +19,7 @@
         <module>redisson_cluster</module>
         <module>kafka</module>
         <module>canal</module>
+        <module>mongodb</module>
     </modules>
 
     <properties>

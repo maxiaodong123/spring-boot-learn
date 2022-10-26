@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: mongodb
+  data:
+    mongodb:
+      uri: mongodb://root:jyty@192.168.0.90:27017/admin?authSource=admin&authMechanism=SCRAM-SHA-1
+      #集群配置
+      #uri: mongodb://admin:123456@192.168.31.1:20000,192.168.31.2:20000,192.168.31.3:20000/testdb?authSource=admin&connect=replicaSet&readPreference=secondaryPreferred&safe=true&authMechanism=SCRAM-SHA-1&maxPoolSize=500&minPoolSize=1
